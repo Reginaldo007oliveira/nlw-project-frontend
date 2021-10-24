@@ -1,7 +1,17 @@
 import styles from './styles.module.scss'
 
+import {api} from '../../service/api'
 import Logox from '../../assets/logo.svg'
+import { useEffect } from 'react'
 export function MessageList(){
+
+    useEffect(() => {
+        api.get('messages/last3').then(response => {
+            console.log(response.data);
+        })
+    }, [] )
+
+
  return(
 //    Container geral
    <div className={styles.messageListWrapper}>
