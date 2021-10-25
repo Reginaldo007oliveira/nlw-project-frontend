@@ -12,6 +12,7 @@ type User = {
 type AuthContextData = {
     user: User | null;
     signInUrl: string;
+    signOut: () => void;
 }
 
  export const AuthContext = createContext({} as AuthContextData)
@@ -30,7 +31,7 @@ type AuthResponse = {
         login: string;
     }
 }
-
+//retorna algo que vem de dentro do contexto
 export function AuthProvider(props: AuthProvider){
     const [user, setUser] = useState<User| null>(null)
 
@@ -49,8 +50,13 @@ export function AuthProvider(props: AuthProvider){
     }
 
 
-useEffect(()=> {
+    function signOut(){
+        setUser(null)
+        localStorage.removeItem('@dowhile:token')
+    }
 
+useEffect(()=> {
+// Vou buscar dentro do local Storage
     const token = localStorage.getItem('@dowhile:token')
 
     if (token){
@@ -86,7 +92,7 @@ useEffect(()=> {
       }, [])
 
     return(
-        <AuthContext.Provider value ={{  signInUrl,user}}>
+        <AuthContext.Provider value ={{  signInUrl,user, signOut }}>
             {props.children}
         </AuthContext.Provider>
     );
