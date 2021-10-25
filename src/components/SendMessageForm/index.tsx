@@ -7,7 +7,7 @@ import styles from './styles.module.scss'
 export function SendMessageForm() {
     const { user, signOut } = useContext(AuthContext)
     const [message, setMessage] = useState('');
-  
+         
     async function handleSendMessage(event: FormEvent) {
       event.preventDefault();
   
@@ -30,11 +30,14 @@ export function SendMessageForm() {
           <div className={styles.userImage}>
             <img src={user?.avatar_url} alt={user?.name} />
           </div>
+
           <strong className={styles.userName}>{user?.name}</strong>
+         
           <span className={styles.userGithub}>
             <VscGithubInverted size="16" />
             {user?.login}
           </span>
+
         </header>
   
         <form onSubmit={handleSendMessage} className={styles.sendMessageForm}>
