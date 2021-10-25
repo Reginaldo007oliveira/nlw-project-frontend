@@ -13,7 +13,7 @@ export function App() {
     <main className={styles.contentWrapper}>
       <h1><MessageList /></h1>
       {!! user ? <SendMessageForm /> : <LoginBox />}
-     <h1><LoginBox /></h1> 
+     
       
     </main>
   )

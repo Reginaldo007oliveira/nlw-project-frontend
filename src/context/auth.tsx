@@ -50,7 +50,7 @@ export function AuthProvider(props: AuthProvider){
     }
 
 
-    function signOut(){
+    function signOut() {
         setUser(null)
         localStorage.removeItem('@dowhile:token')
     }
